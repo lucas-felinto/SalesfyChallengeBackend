@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 
 export default {
   async translate(req: Request, res: Response) {
-    const units = [
-      "zero",
+    const zero = "zero";
+    const lessThanTwenty = [
+      "",
       "one",
       "two",
       "three",
@@ -13,10 +14,7 @@ export default {
       "seven",
       "eight",
       "nine",
-    ];
-
-    const tens = [
-      "",
+      "ten",
       "eleven",
       "twelve",
       "thirteen",
@@ -41,15 +39,13 @@ export default {
       "ninety",
     ];
 
-    const thousands = ["", "thousand", "million", "billion", "trillion"];
-
     const number = req.query.translate;
     let translatedNumber = "";
 
-    if (number > 999999999999999)
+    if (number >= 1000)
       return res
         .status(400)
-        .json({ error: "Your number must be smaller then 999999999999999" });
+        .json({ error: "Your number must be smaller then 1000" });
 
     if (number < 0)
       return res.status(400).json({ error: "Must be a positive number" });
@@ -60,10 +56,16 @@ export default {
     if (Number(number) % 1 !== 0)
       return res.status(400).json({ error: "Number must be integer" });
 
-    function convertToString(number: Number) {}
+    if (number == 0) translatedNumber = zero;
+    if (number < 20 && number > 0)
+      translatedNumber = lessThanTwenty[Number(number)];
+    if (number < 100 && number >= 20)
+      translatedNumber = `${dozens[number[0]]} ${lessThanTwenty[number[1]]}`;
+    if (number < 1000 && number >= 100)
+      translatedNumber = `${lessThanTwenty[number[0]]} hundred ${
+        dozens[number[1]]
+      } ${lessThanTwenty[number[2]]}`;
 
-    convertToString(number);
-
-    return res.send("OK");
+    return res.send(translatedNumber);
   },
 };
