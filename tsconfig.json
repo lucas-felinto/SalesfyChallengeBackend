@@ -1,23 +1,20 @@
 {
   "compilerOptions": {
-	"target": "es6",
-        "outDir": "js",
-        "noEmitOnError": true, 
-        "noImplicitAny": true,
-        "removeComments": true,
-        "module": "commonjs",
-        "strictNullChecks": true,
-		"inlineSourceMap": true,
-		"experimentalDecorators": true,
-        "sourceMap": false,
-		"skipLibCheck": true,
-		"types": [
-            "node"
-        ],
-        "typeRoots": [
-            "node_modules/@types"
-		],
-		"baseUrl": ".",
+    "target": "es6",
+    "outDir": "js",
+    "noEmitOnError": true,
+    "noImplicitAny": true,
+    "removeComments": true,
+    "module": "commonjs",
+    "strictNullChecks": true,
+    "inlineSourceMap": true,
+    "experimentalDecorators": true,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "types": ["node", "mocha"],
+    "typeRoots": ["node_modules/@types"],
+    "baseUrl": "."
   },
-  "lib": ["es2015"]
+  "lib": ["es2015"],
+  "exclude": ["./test/"]
 }

@@ -15,3 +15,5 @@ app.listen(port, (err) => {
   }
   return console.log(`Salesfy Challenge Backend is listening on ${port}`);
 });
+
+export default app;
