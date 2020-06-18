@@ -51,6 +51,9 @@ export default {
         .status(400)
         .json({ error: "Your number must be smaller then 999999999999999" });
 
+    if (number < 0)
+      return res.status(400).json({ error: "Must be a positive number" });
+
     if (!Number.isInteger(parseInt(number)))
       return res.status(400).json({ error: "Must be a number" });
 
